@@ -30,19 +30,20 @@ const createComanda = (req, res) => {
 
     // total = total * 1.10;
 
-    if(!itens || itens.length === 0){
-      res.status(400).json({
-        sucesso: false,
-        mensagem: `Não foi possivel criar comanda pois itens = ${itens.length}`
-      })
-    }
-
     if(!mesa || mesa === ""){
       res.status(400).json({
         sucesso: false,
-        mensagem: `Não foi possivel criar comanda, mesa inexistente`
+        mensagem: `Não foi possivel criar comanda, mesa não informada`
       })
     }
+
+    if(!itens || itens.length === 0){
+      res.status(400).json({
+        sucesso: false,
+        mensagem: `Não foi possivel criar comanda pois itens = ${itens}`
+      })
+    }
+
 
     if(total <= 0){
       res.status(400).json({

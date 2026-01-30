@@ -1,3 +1,6 @@
+# TEST CASES:
+## https://docs.google.com/spreadsheets/d/1HCAyHnC8DpHgerdoiRMfitGyjzha3HDPfOJTMJMZgeE/edit?usp=sharing
+
 # 🛠️ BACKEND :
 
 # 🍽️ API RESTful Didática - Restaurante
