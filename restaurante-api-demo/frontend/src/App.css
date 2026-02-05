@@ -113,7 +113,6 @@ body {
 
 /* --- Estilos dos Botões do Cardápio --- */
 .cardapio-item button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   padding: 0.7em 1.2em;
@@ -123,7 +122,11 @@ body {
   font-size: 0.95em;
   font-weight: 600;
   transition: all 0.3s ease;
-  width: 100%;
+
+}
+
+.adicionar-pedido{
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .cardapio-item button:hover {
@@ -220,6 +223,30 @@ body {
   width: 100%;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+.quantNumber{
+  height: 100%;
+  width: 40%;
+  padding: 0;
+  margin: 0;
+}
+
+.divAddQuantPedidos{
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.plus-btn{
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  width: 30%;
+}
+
+.minus-btn{
+  background: linear-gradient(135deg, #a72828 0%, #c92020 100%);
+  width: 30%;
 }
 
 .btn-fazer-pedido:hover:not(:disabled) {
@@ -536,5 +563,6 @@ body {
     padding: 1.2em;
   }
 }
+
 
 

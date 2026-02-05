@@ -3,6 +3,8 @@ import { getCardapio, createComanda } from './services/api'; // Importa nossas f
 import { PainelCozinha } from './components/PainelCozinha'; // Importa o Painel da Cozinha
 import './App.css'; // Vite inclui este CSS básico
 
+const quantidade = document.getElementsByClassName("quantNumber");
+
 function App() {
   // Estado para guardar os itens do cardápio
   const [cardapio, setCardapio] = useState([]);
@@ -56,6 +58,13 @@ function App() {
     return comanda.reduce((total, item) => total + item.preco, 0);
   };
 
+  const addQuantidade = () => {
+      quantidade[0].innerText;
+  }
+  const subQuantidade = () => {
+      quantidade.innerText -= 1;
+  }
+
   // Função para ENVIAR o pedido para o back-end
   const handleFazerPedido = async () => {
     if (comanda.length === 0) {
@@ -73,7 +82,7 @@ function App() {
       console.log('✅ Pedido enviado com sucesso!', response.data);
       alert(`✅ Pedido #${response.data.dados.id} enviado para a cozinha!`);
       
-      setComanda([]); // Limpa o carrinho
+      setComanda([]); // Limpa o carrinhos
       setNumeroMesa((numMesa) => numMesa + 1);
       // ATUALIZA A LISTA DE PEDIDOS NO PAINEL DA COZINHA
       setRefreshPedidos(count => count + 1); // Incrementa o gatilho
@@ -120,11 +129,29 @@ function App() {
             <p className="descricao">{item.descricao}</p>
             <p className="preco">R$ {item.preco.toFixed(2)}</p>
             {/* Botão para adicionar item à comanda */}
-            <button 
-            onClick={() => handleAddItemComanda(item)} 
-            style={{color: 'white'}}>
-              ➕ Adicionar ao Pedido
-            </button>
+            
+            <div className='divAddQuantPedidos'  >
+              <button style={{backgroundColor: "red"}} 
+              className='minus-btn'
+              onClick={() => subQuantidade()}
+              >
+                ➖
+              </button>
+              <p class="quantNumber" style={{backgroundColor: 'black'}}>0</p>
+              <button style ={{backgroundColor: 'green'}}
+              className='plus-btn'
+              onClick={() => addQuantidade()}
+              >
+                ➕
+              </button>
+            </div>
+              <button className='adicionar-pedido'
+              onClick={() => handleAddItemComanda(item)} 
+              style={{color: 'white'}}>
+                ➕ Adicionar ao Pedido
+              </button>
+      
+            
           </div>
         ))}
       </div>

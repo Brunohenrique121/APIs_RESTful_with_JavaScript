@@ -1,29 +1,16 @@
-// Simulação de Banco de Dados em Memória
-// Este arquivo funciona como nossa "cozinha" onde guardamos os dados
+const mysql = require("mysql2/promise");
+require("dotenv").config();
 
-// Array que representa o cardápio do restaurante
-const cardapio = [
-  { id: 1, nome: 'Prato Feito', preco: 13.00, descricao: 'Arroz, feijão, bife e salada' },
-  { id: 2, nome: 'Suco de Laranja', preco: 8.00, descricao: 'Suco natural 500ml' },
-  { id: 3, nome: 'Hambúrguer Artesanal', preco: 35.00, descricao: 'Pão, carne 180g, queijo e batata' },
-  { id: 4, nome: 'Pizza Margherita', preco: 40.00, descricao: 'Pizza tradicional italiana' },
-  { id: 5, nome: 'Refrigerante', preco: 7.00, descricao: 'Lata 350ml' },
-  { id: 6, nome: 'Doce', descricao: 'Goiabada de banana', preco: 7.00 }
-];
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: Number(process.env.DB_PORT),
+    waitForConnections: true,
+    connectionLimit: 10
+});
 
-// Array que armazenará as comandas (pedidos) dos clientes
-// Inicialmente vazio, será preenchido quando clientes fizerem pedidos
-const comandas = [];
+;
 
-// Função para resetar o array de comandas (útil para testes)
-// Remove todas as comandas e reseta o array para vazio
-const resetComandas = () => {
-  comandas.length = 0; // Limpa o array sem criar uma nova referência
-};
-
-// Exportamos os arrays e a função de reset para serem usados em outros arquivos
-module.exports = {
-  cardapio,
-  comandas,
-  resetComandas
-};
+module.exports = pool;

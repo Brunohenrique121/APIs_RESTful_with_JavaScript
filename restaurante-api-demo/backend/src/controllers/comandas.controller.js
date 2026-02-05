@@ -45,19 +45,19 @@ const createComanda = (req, res) => {
     // Extrai os dados enviados pelo cliente
     const { mesa, itens, total } = req.body;
     const fetchItensCardapio = [];
-    let quant = 1;
+    let listaQuantItens = {};
     
     itens.forEach(async (item) => {
       let nomeItem = await buscarNomeItens(item)
 
       if(fetchItensCardapio.includes(nomeItem)){
         const posItem = fetchItensCardapio.indexOf(nomeItem);
-        fetchItensCardapio[posItem] = (nomeItem + `x${quant}`)
-        quant += 1;
+        fetchItensCardapio[posItem] = (nomeItem)
+        listaQuantItens[nomeItem] += 1;
 
       } else {
-        quant = 1
-        fetchItensCardapio.push(nomeItem + `x${quant}`)
+        fetchItensCardapio.push(nomeItem)
+        listaQuantItens[nomeItem] = 1; 
       }
       
     })
@@ -90,6 +90,7 @@ const createComanda = (req, res) => {
       id: comandas.length + 1, // ID automático baseado no tamanho do array
       mesa,
       fetchItensCardapio,
+      listaQuantItens,
       total,
       status: "pendente",
       dataPedido: new Date().toISOString()
