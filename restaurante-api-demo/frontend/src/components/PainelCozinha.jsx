@@ -15,6 +15,7 @@ export function PainelCozinha({ refreshTrigger }) {
       setLoading(true); // Ativa o loading a cada atualização
       try {
         const response = await getComandas();
+        console.log("Response:", response)
         console.log('✅ Front-end: Pedidos recebidos!', response.data);
         
         // O back-end retorna { sucesso, mensagem, quantidade, dados }
@@ -124,10 +125,10 @@ export function PainelCozinha({ refreshTrigger }) {
                 Status: <span className={`status status-${comanda.status.toLowerCase().replace(' ', '-')}`}>{comanda.status}</span>
               </p>
               <p className="cozinha-itens" style={{whiteSpace: "pre-line"}}>
-                📋 Itens: {"\n"} {comanda.fetchItensCardapio.map(c => c + " x" + comanda.listaQuantItens[c] + '\n')}
+                📋 Itens: {"\n"} {console.log("assadasasfasfasfasfsfafasfsfafa", comanda.itens)}{comanda.status}
               </p>
               <p className="cozinha-total">
-                <strong>💰 Total: R$ {comanda.total.toFixed(2)}</strong>
+                <strong>💰 Total: R$ {comanda.total}</strong>
               </p>
               <p className="cozinha-data">
                 <small>🕐 Recebido: {new Date(comanda.dataPedido).toLocaleString('pt-BR')}</small>

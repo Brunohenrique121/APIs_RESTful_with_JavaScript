@@ -127,7 +127,7 @@ function App() {
           <div key={item.id} className="cardapio-item">
             <h2>{item.nome}</h2>
             <p className="descricao">{item.descricao}</p>
-            <p className="preco">R$ {item.preco.toFixed(2)}</p>
+            <p className="preco">R$ {item.preco}</p>
             {/* Botão para adicionar item à comanda */}
             
             <div className='divAddQuantPedidos'  >
@@ -169,7 +169,7 @@ function App() {
             comanda.map((item, index) => (
               <div key={index} className="comanda-item">
                 <span className="comanda-item-nome">{item.nome}</span>
-                <span className="comanda-item-preco">R$ {item.preco.toFixed(2)}</span>
+                <span className="comanda-item-preco">R$ {item.preco}</span>
               </div>
             ))
           )}
