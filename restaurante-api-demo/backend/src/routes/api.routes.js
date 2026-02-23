@@ -26,7 +26,7 @@ router.get('/comandas', comandasController.getComandas);
 // router.patch('/comandas/:id', comandasController.updateComandaStatus);
 
 // // DELETE /api/comandas/:id - Deleta uma comanda
-// router.delete('/comandas/:id', comandasController.deleteComanda);
+router.delete('/comandas/:id', comandasController.deleteComanda);
 
 // // Exporta o router para ser usado no server.js
 module.exports = router;
