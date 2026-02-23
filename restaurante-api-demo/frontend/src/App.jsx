@@ -176,7 +176,7 @@ function App() {
         </div>
         <hr />
         <div className="comanda-total">
-          <strong>Total: R$ {calcularTotalComanda().toFixed(2)}</strong>
+          <strong>Total: R$ {calcularTotalComanda()}</strong>
         </div>
         <button
           className="btn-fazer-pedido"
