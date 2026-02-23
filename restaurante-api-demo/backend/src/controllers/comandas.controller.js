@@ -187,20 +187,22 @@ const getComandas = async (req, res) => {
 
 // // Função para deletar uma comanda (DELETE)
 // // Remove um pedido do sistema (ex: cancelamento, limpeza de pedidos antigos)
- const deleteComanda = (req, res) => {
+
+const deleteComanda = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const comandaIndex = comandas.findIndex(c => c.id == id);
+    const [resultado] = await db.query(
+      'DELETE FROM comandas WHERE id = ?',
+      [id]
+    );
 
-    if (comandaIndex === -1) {
+    if (resultado.affectedRows === 0) {
       return res.status(404).json({
         sucesso: false,
         mensagem: 'Comanda não encontrada.'
       });
     }
-
-    comandas.splice(comandaIndex, 1);
 
     res.json({
       sucesso: true,
@@ -208,6 +210,7 @@ const getComandas = async (req, res) => {
     });
 
   } catch (erro) {
+    console.error('Erro ao deletar comanda:', erro);
     res.status(500).json({
       sucesso: false,
       mensagem: 'Erro ao deletar comanda.'
@@ -235,5 +238,6 @@ const getComandas = async (req, res) => {
 
 // Exporta as funções para serem usadas nas rotas
 module.exports = {
-  getComandas 
+  getComandas,
+  deleteComanda
 };
