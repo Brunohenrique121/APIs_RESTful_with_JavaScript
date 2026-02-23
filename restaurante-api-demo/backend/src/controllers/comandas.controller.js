@@ -187,22 +187,33 @@ const getComandas = async (req, res) => {
 
 // // Função para deletar uma comanda (DELETE)
 // // Remove um pedido do sistema (ex: cancelamento, limpeza de pedidos antigos)
-// const deleteComanda = (req, res) => {
-//   try {
-//     const { id } = req.params; // Pega o ID da URL
+ const deleteComanda = (req, res) => {
+  try {
+    const { id } = req.params;
 
-//     // Encontra o índice da comanda no array
-//     // Usamos == (comparação fraca) para permitir '1' == 1
-//     const comandaIndex = comandas.findIndex(c => c.id == id);
+    const comandaIndex = comandas.findIndex(c => c.id == id);
 
-//     // Se não encontrar (índice -1), retorna 404
-//     if (comandaIndex === -1) {
-//       return res.status(404).json({
-//         sucesso: false,
-//         mensagem: 'Comanda não encontrada.'
-//       });
-//     }
+    if (comandaIndex === -1) {
+      return res.status(404).json({
+        sucesso: false,
+        mensagem: 'Comanda não encontrada.'
+      });
+    }
 
+    comandas.splice(comandaIndex, 1);
+
+    res.json({
+      sucesso: true,
+      mensagem: 'Comanda removida com sucesso.'
+    });
+
+  } catch (erro) {
+    res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro ao deletar comanda.'
+    });
+  }
+};
 //     // Remove a comanda do array usando splice
 //     // splice(índice, quantosRemover) - remove 1 elemento no índice encontrado
 //     comandas.splice(comandaIndex, 1);
