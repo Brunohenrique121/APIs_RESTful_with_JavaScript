@@ -2,19 +2,29 @@
 // Este arquivo é como o "Chef de Pedidos" que recebe e gerencia os pedidos dos clientes
 
 
-const db = require('../services/database');
-
-const getComandas = async (req, res) => {
+const listarComandas = async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT * FROM comandas'); 
+    const [rows] = await db.query('SELECT * FROM comandas ORDER BY criado_em DESC');
+
+    // Parse do campo JSON 'itens' (MySQL pode retornar como string, array ou objeto)
+    const comandasComItens = rows.map(comanda => ({
+      ...comanda,
+      itens: Array.isArray(comanda.itens)
+        ? comanda.itens
+        : (typeof comanda.itens === 'string' ? JSON.parse(comanda.itens) : comanda.itens)
+    }));
 
     res.json({
       sucesso: true,
-      dados: rows
+      dados: comandasComItens
     });
+
   } catch (erro) {
-    console.error(erro); // Log para ajudar no debug do Render
-    res.status(500).json({ sucesso: false, mensagem: "Erro ao acessar o banco" });
+    console.error('Erro ao listar comandas:', erro);
+    res.status(500).json({
+      sucesso: false,
+      mensagem: 'Erro ao listar comandas'
+    });
   }
 };
 
