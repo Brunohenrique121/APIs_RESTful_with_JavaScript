@@ -2,7 +2,9 @@
 // Este arquivo é como o "Chef de Pedidos" que recebe e gerencia os pedidos dos clientes
 
 
-const listarComandas = async (req, res) => {
+const db = require('../services/database');
+
+const getComandas = async (req, res) => {
   try {
     const [rows] = await db.query('SELECT * FROM comandas ORDER BY criado_em DESC');
 
