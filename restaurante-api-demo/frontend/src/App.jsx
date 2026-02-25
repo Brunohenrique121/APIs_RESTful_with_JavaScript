@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getCardapio, createComanda } from './services/api'; // Importa nossas funções da API
 import { PainelCozinha } from './components/PainelCozinha'; // Importa o Painel da Cozinha
 import './App.css'; // Vite inclui este CSS básico
+import Usuarios from "./Usuario";
 
 const quantidade = document.getElementsByClassName("quantNumber");
 
@@ -158,6 +159,8 @@ function App() {
 
       {/* PAINEL DA COZINHA - Mostra todos os pedidos feitos */}
       <PainelCozinha refreshTrigger={refreshPedidos} />
+
+      <Usuarios />
 
       {/* SEÇÃO DA COMANDA (CARRINHO) */}
       <div className="comanda-secao">

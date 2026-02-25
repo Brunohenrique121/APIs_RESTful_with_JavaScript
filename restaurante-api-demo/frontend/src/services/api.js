@@ -35,6 +35,11 @@ export const getComandas = () => {
   return api.get('/comandas');
 };
 
+// Usuario 
+export const getUsuarios = () => {
+  return api.get('/usuarios');
+}
+
 // Função para ATUALIZAR o status de uma comanda
 export const updateComandaStatus = (id, novoStatus) => {
   console.log(`Front-end: "Garçom, mudar pedido #${id} para ${novoStatus}!"`);

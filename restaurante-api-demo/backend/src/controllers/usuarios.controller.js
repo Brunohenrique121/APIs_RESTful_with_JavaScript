@@ -2,6 +2,7 @@ const db = require('../services/database');
 
 const getUsuarios = async (req, res) => {
   try {
+    console.log("entrou")
     const [rows] = await db.query('SELECT * FROM usuarios'); 
 
     res.json({

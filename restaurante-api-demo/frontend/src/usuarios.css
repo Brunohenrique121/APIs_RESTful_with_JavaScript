@@ -1,0 +1,82 @@
+.usuarios-container {
+  margin: 3em 0;
+  padding: 2em;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.usuarios-container h2 {
+  margin-bottom: 1.5em;
+  color: #333;
+}
+
+.form-usuario {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 2em;
+  flex-wrap: wrap;
+}
+
+.form-usuario input {
+  padding: 0.8em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95em;
+  flex: 1;
+}
+
+.form-usuario button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.8em 1.5em;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.form-usuario button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+}
+
+.usuarios-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2em;
+}
+
+.usuario-card {
+  padding: 1.2em;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: 0.3s;
+  background: #fafafa;
+}
+
+.usuario-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
+
+.usuario-card h3 {
+  margin: 0 0 0.5em 0;
+  color: #333;
+}
+
+.usuario-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.loading-user {
+  color: #667eea;
+}
+
+.erro-user {
+  color: #dc3545;
+  font-weight: bold;
+}
