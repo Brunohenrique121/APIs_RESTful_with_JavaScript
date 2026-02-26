@@ -4,6 +4,7 @@ import { PainelCozinha } from './components/PainelCozinha'; // Importa o Painel 
 import './App.css'; // Vite inclui este CSS básico
 import Usuarios from "./Usuario";
 
+
 const quantidade = document.getElementsByClassName("quantNumber");
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
   const [numeroMesa, setNumeroMesa] = useState(1);
 
+
   // useEffect: Roda quando o componente "monta" (inicia)
   useEffect(() => {
     // Função interna para "chamar o garçom"
@@ -27,7 +29,7 @@ function App() {
       try {
         const response = await getCardapio();
         console.log('✅ Front-end: "Cardápio recebido!"', response.data);
-        
+
         // A resposta da API vem em response.data.dados (conforme nosso back-end)
         if (response.data.dados) {
           setCardapio(response.data.dados);
@@ -60,10 +62,10 @@ function App() {
   };
 
   const addQuantidade = () => {
-      quantidade[0].innerText;
+    quantidade[0].innerText;
   }
   const subQuantidade = () => {
-      quantidade.innerText -= 1;
+    quantidade.innerText -= 1;
   }
 
   // Função para ENVIAR o pedido para o back-end
@@ -82,12 +84,12 @@ function App() {
       const response = await createComanda(dadosDoPedido);
       console.log('✅ Pedido enviado com sucesso!', response.data);
       alert(`✅ Pedido #${response.data.dados.id} enviado para a cozinha!`);
-      
+
       setComanda([]); // Limpa o carrinhos
       setNumeroMesa((numMesa) => numMesa + 1);
       // ATUALIZA A LISTA DE PEDIDOS NO PAINEL DA COZINHA
       setRefreshPedidos(count => count + 1); // Incrementa o gatilho
-      
+
     } catch (err) {
       console.error('❌ Erro ao enviar pedido:', err);
       alert('❌ Erro ao enviar pedido para a "Cozinha". Tente novamente.');
@@ -117,12 +119,13 @@ function App() {
     );
   }
 
+
   // Se deu tudo certo:
   return (
     <div className="App">
       <h1>🍽️ Cardápio do Restaurante 🍽️</h1>
       <p className="subtitle">Bem-vindo! Confira nossos deliciosos pratos:</p>
-      
+
       <div className="cardapio-lista">
         {cardapio.map((item) => (
           <div key={item.id} className="cardapio-item">
@@ -130,29 +133,29 @@ function App() {
             <p className="descricao">{item.descricao}</p>
             <p className="preco">R$ {item.preco}</p>
             {/* Botão para adicionar item à comanda */}
-            
+
             <div className='divAddQuantPedidos'  >
-              <button style={{backgroundColor: "red"}} 
-              className='minus-btn'
-              onClick={() => subQuantidade()}
+              <button style={{ backgroundColor: "red" }}
+                className='minus-btn'
+                onClick={() => subQuantidade()}
               >
                 ➖
               </button>
-              <p class="quantNumber" style={{backgroundColor: 'black'}}>0</p>
-              <button style ={{backgroundColor: 'green'}}
-              className='plus-btn'
-              onClick={() => addQuantidade()}
+              <p class="quantNumber" style={{ backgroundColor: 'black' }}>0</p>
+              <button style={{ backgroundColor: 'green' }}
+                className='plus-btn'
+                onClick={() => addQuantidade()}
               >
                 ➕
               </button>
             </div>
-              <button className='adicionar-pedido'
-              onClick={() => handleAddItemComanda(item)} 
-              style={{color: 'white'}}>
-                ➕ Adicionar ao Pedido
-              </button>
-      
-            
+            <button className='adicionar-pedido'
+              onClick={() => handleAddItemComanda(item)}
+              style={{ color: 'white' }}>
+              ➕ Adicionar ao Pedido
+            </button>
+
+
           </div>
         ))}
       </div>

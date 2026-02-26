@@ -47,6 +47,15 @@ export const updateComandaStatus = (id, novoStatus) => {
   return api.patch(`/comandas/${id}`, { status: novoStatus });
 };
 
+// Função para verificar usuarios
+
+
+// Função para fazer login
+export const loginUsuario = (email, senha) => {
+  console.log('🔐 Front-end: "Tentando fazer login..."');
+  return api.get(`/login/${email}/${senha}`);
+};
+
 // Função para DELETAR uma comanda
 export const deleteComanda = (id) => {
   console.log(`Front-end: "Garçom, cancelar o pedido #${id}!"`);

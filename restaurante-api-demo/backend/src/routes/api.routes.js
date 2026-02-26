@@ -1,3 +1,4 @@
+// api.routes.js
 // Arquivo de Rotas da API
 // Este é o "livro de pedidos" que define todos os endpoints disponíveis
 
@@ -9,28 +10,34 @@ const cardapioController = require('../controllers/cardapio.controller');
 const comandasController = require('../controllers/comandas.controller');
 const usuarioController = require('../controllers/usuarios.controller');
 
-// ========== ROTAS DO CARDÁPIO ==========
+// ================= ROTAS DO CARDÁPIO =================
 // GET /api/cardapio - Retorna todo o cardápio
 router.get('/cardapio', cardapioController.listarCardapio);
 
-// // GET /api/cardapio/:id - Retorna um item específico do cardápio
+// GET /api/cardapio/:id - Retorna um item específico do cardápio
 // router.get('/cardapio/:id', cardapioController.getCardapioItem);
 
-// // ========== ROTAS DAS COMANDAS ==========
-// // GET /api/comandas - Retorna todas as comandas
+// ================= ROTAS DAS COMANDAS =================
+// GET /api/comandas - Retorna todas as comandas
 router.get('/comandas', comandasController.getComandas);
 
-// // POST /api/comandas - Cria uma nova comanda
- //router.post('/comandas', comandasController.createComanda);
+// POST /api/comandas - Cria uma nova comanda
+// router.post('/comandas', comandasController.createComanda);
 
-// // PATCH /api/comandas/:id - Atualiza o status de uma comanda
+// PATCH /api/comandas/:id - Atualiza o status de uma comanda
 // router.patch('/comandas/:id', comandasController.updateComandaStatus);
 
-// // DELETE /api/comandas/:id - Deleta uma comanda
+// DELETE /api/comandas/:id - Deleta uma comanda
 router.delete('/comandas/:id', comandasController.deleteComanda);
 
-// Usuario
+// ================= ROTAS DE USUÁRIOS =================
+// Rota para todos os usuários
 router.get('/usuarios', usuarioController.getUsuarios);
 
-// // Exporta o router para ser usado no server.js
+// Rota para verificar Usuários
+router.get('/login/:email/:senha', usuarioController.loginUsuario);
+
+// Rota apenas para os usuários da seed
+
+// Exporta o router para ser usado no server.js
 module.exports = router;
